@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="testsuite2">
+    <test name="method level">
+        <classes>
+            <class name="users.UserScripts">
+                <methods>
+                    <include name="deleteUser"></include>
+                    <include name="createUser"></include>
+                </methods>
+            </class>
+            <class name="customers.CustomersScripts">
+                <methods>
+                    <exclude name="createCustomer"></exclude>
+                </methods>
+            </class>
+            
+        </classes>
+
+    </test>
+</suite>
