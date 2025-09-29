@@ -1,0 +1,48 @@
+package pom1;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+
+public class UtilityMethods {
+    public static WebDriver launchBrowser(String browserName){
+        WebDriver oDriver = null;
+        switch(browserName.toLowerCase()){
+            case "chrome":
+                oDriver = new ChromeDriver();
+                break;
+            case "firefox":
+                oDriver = new FirefoxDriver();
+                break;
+            case "edge":
+                oDriver = new EdgeDriver();
+                break;
+            default:
+                System.out.println("Invalid browser name '"+browserName+"' was specified");
+        }
+        if(oDriver!=null){
+            oDriver.manage().window().maximize();
+            System.out.println("The '"+browserName+"' browser launched successful");
+            return oDriver;
+        }else{
+            System.out.println("Failed to launch the '"+browserName+"' browser");
+            return null;
+        }
+    }
+
+
+        public static boolean navigateURL(WebDriver oBrowser, String strURL){
+            try{
+                oBrowser.navigate().to(strURL);
+                Thread.sleep(2000);
+                Assert.assertEquals(oBrowser.getTitle(), "actiTIME - Login", "Failed to load the URL '"+strURL+"'");
+                return true;
+            }catch(Exception e){
+                System.out.println("Exception in 'navigateURL()' method. "+ e);
+                return false;
+            }
+        }
+
+    }
